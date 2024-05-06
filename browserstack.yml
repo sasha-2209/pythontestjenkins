@@ -1,0 +1,21 @@
+userName: sakshisingh_2zqFo0
+accessKey: ecvU7c5HVwh7amvESRiL
+platforms:
+  - os: OS X
+    osVersion: Sonoma
+    browserName: Chrome
+    browserVersion: latest
+  - os: OS X
+    osVersion: Monterey
+    browserName: Edge
+    browserVersion: latest
+  - deviceName: iPhone 13
+    osVersion: 15
+    browserName: Chromium
+    deviceOrientation: portrait
+browserstackLocal: true
+browserStackLocalOptions:
+  forceLocal: true
+buildName: browserstack-build-sakshi
+acceptInsecureCerts: true
+projectName: BrowserStack Sample Sakshi
