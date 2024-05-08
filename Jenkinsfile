@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                browserstack(credentialsId: 'eb97920c-6104-4e74-84f2-da6d80e409c6') 
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sasha-2209/pythontestjenkins.git']]])
             }
         }
