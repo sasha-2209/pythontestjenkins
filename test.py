@@ -31,11 +31,11 @@ try:
     # Verify whether the product (iPhone 12) is added to cart
     if item_on_page == item_in_cart:
         # Set the status of test as 'passed' if item is added to cart
-        driver.execute_script(
+        selenium.execute_script(
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "iPhone 12 has been successfully added to the cart!"}}')
     else:
         # Set the status of test as 'failed' if item is not added to cart
-        driver.execute_script(
+        selenium.execute_script(
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "iPhone 12 not added to the cart!"}}')
 #commented section below
 except NoSuchElementException as err:
