@@ -1,44 +1,25 @@
-def gv
-
 pipeline {
     agent any
-    parameters {
-        choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
-        booleanParam(name: 'executeTests', defaultValue: true, description: '')
-    }
+
     stages {
-        stage("init") {
+        stage('Checkout') {
             steps {
-                script {
-                   gv = load "script.groovy" 
-                }
+                browserstack(credentialsId: 'eb97920c-6104-4e74-84f2-da6d80e409c6') 
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sasha-2209/pythontestjenkins.git']]])
             }
         }
-        stage("build") {
+        stage('Build') {
             steps {
-                script {
-                    gv.buildApp()
-                }
+                browserstack(credentialsId: 'eb97920c-6104-4e74-84f2-da6d80e409c6') 
+                git branch: 'main', url: 'https://github.com/sasha-2209/pythontestjenkins.git'
+                sh 'python3 test.py'
             }
         }
-        stage("test") {
-            when {
-                expression {
-                    params.executeTests
-                }
-            }
+        stage('Test') {
             steps {
-                script {
-                    gv.testApp()
-                }
+                browserstack(credentialsId: 'eb97920c-6104-4e74-84f2-da6d80e409c6') 
+                sh 'python3 -m pytest'
             }
         }
-        stage("deploy") {
-            steps {
-                script {
-                    gv.deployApp()
-                }
-            }
-        }
-    }   
+    }
 }
