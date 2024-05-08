@@ -14,7 +14,7 @@ options = ChromeOptions()
 driver = webdriver.Chrome(options=options)
 
 try:
-    driver.get('https://bstackdemo.com/')
+    driver.get('https://www.bstackdemo.com/')
     WebDriverWait(driver, 10).until(EC.title_contains('StackDemo'))
     # Get text of an product - iPhone 12
     item_on_page = WebDriverWait(driver, 10).until(
@@ -29,23 +29,7 @@ try:
     item_in_cart = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
         (By.XPATH, '//*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]'))).text
     # Verify whether the product (iPhone 12) is added to cart
-    if item_on_page == item_in_cart:
-        # Set the status of test as 'passed' if item is added to cart
-        driver.execute_script(
-            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "iPhone 12 has been successfully added to the cart!"}}')
-    else:
-        # Set the status of test as 'failed' if item is not added to cart
-        driver.execute_script(
-            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "iPhone 12 not added to the cart!"}}')
-#commented section below
-#except NoSuchElementException as err:
-   # message = 'Exception: ' + str(err.__class__) + str(err.msg)
-   # driver.execute_script(
-    #    'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
-#except Exception as err:
-#    message = 'Exception: ' + str(err.__class__) + str(err.msg)
-#    driver.execute_script(
-#        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
+    
 finally:
     # Stop the driver
     driver.quit()
