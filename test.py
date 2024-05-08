@@ -19,6 +19,7 @@ try:
     # Get text of an product - iPhone 12
     item_on_page = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.XPATH, '//*[@id="1"]/p'))).text
+    print("item_on_page",item_on_page)
     # Click the 'Add to cart' button if it is visible
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
         (By.XPATH, '//*[@id="1"]/div[4]'))).click()
@@ -28,6 +29,7 @@ try:
     # Get text of product in cart
     item_in_cart = WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
         (By.XPATH, '//*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]'))).text
+    print("item_in_cart",item_in_cart)
     # Verify whether the product (iPhone 12) is added to cart
     if item_on_page == item_in_cart:
         # Set the status of test as 'passed' if item is added to cart
