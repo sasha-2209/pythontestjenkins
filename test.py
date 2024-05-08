@@ -37,14 +37,15 @@ try:
         # Set the status of test as 'failed' if item is not added to cart
         driver.execute_script(
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "iPhone 12 not added to the cart!"}}')
-except NoSuchElementException as err:
-    message = 'Exception: ' + str(err.__class__) + str(err.msg)
-    driver.execute_script(
-        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
-except Exception as err:
-    message = 'Exception: ' + str(err.__class__) + str(err.msg)
-    driver.execute_script(
-        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
+#commented section below
+#except NoSuchElementException as err:
+   # message = 'Exception: ' + str(err.__class__) + str(err.msg)
+   # driver.execute_script(
+    #    'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
+#except Exception as err:
+#    message = 'Exception: ' + str(err.__class__) + str(err.msg)
+#    driver.execute_script(
+#        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": ' + json.dumps(message) + '}}')
 finally:
     # Stop the driver
     driver.quit()
